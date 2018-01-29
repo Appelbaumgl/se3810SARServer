@@ -54,7 +54,7 @@ public class SQLController {
 	private String[] readDBConfig() {
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File(servletContext.getRealPath("DB_Config.txt")));
+			scanner = new Scanner(new File(servletContext.getRealPath("/WEB-INF/lib/DB_Config.txt")));
 			String[] login = {scanner.nextLine(), scanner.nextLine()};
 			scanner.close();
 			return login;

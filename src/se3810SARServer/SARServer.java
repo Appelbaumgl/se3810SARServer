@@ -52,7 +52,7 @@ public class SARServer extends HttpServlet {
 			if(json.has("tag")) {
 				sqlController.saveTagToDatabase((JSONObject) json.get("tag"));
 			} else if(json.has("request")) {
-				//doRequest();
+				//sqlController.doRequest();
 			}
     	} catch (JSONException e) {
 			e.printStackTrace();
