@@ -29,9 +29,10 @@ public class SQLController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		createTagsTable();
 	}
 	
-	public void createTagsTable() {
+	private void createTagsTable() {
 		try {
 			String query = "CREATE TABLE IF NOT EXISTS tags ("
 	    			+ "id INT NOT NULL AUTO_INCREMENT,"
@@ -67,14 +68,16 @@ public class SQLController {
 	
 	public void saveTagToDatabase(JSONObject tag) throws JSONException {
 		try {
-			String query = "INSERT INTO tags (" + tag.getString("latitude") + ", " +
-					tag.getString("longitude") + ", " + 
-					tag.getString("altitude") + ", " +
-					tag.getString("creator") + ", " +
-					tag.getString("title") + ", " +
-					tag.getString("content") + ")";
+			String query = "INSERT INTO tags (latitude, longitude, altitude, creator, title, content)"
+					+ " VALUES ('" + tag.getDouble("latitude") + "', '" +
+					tag.getDouble("longitude") + "', '" + 
+					tag.getDouble("altitude") + "', " +
+					tag.getString("creator").replace('\"', '\'') + ", " +
+					tag.getString("title").replace('\"', '\'') + ", " +
+					tag.getString("content").replace('\"', '\'') + ")";
+			System.out.println(query);
 			Statement statement = connection.createStatement();
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
