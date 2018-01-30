@@ -35,7 +35,7 @@ public class SARServer extends HttpServlet {
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    	System.out.println("GET");
     }
 
 	/**
@@ -43,6 +43,7 @@ public class SARServer extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	System.out.println("POST");
 		char[] cbuf = new char[request.getContentLength()];
     	request.getReader().read(cbuf);
     	String jsonString = new String(cbuf);

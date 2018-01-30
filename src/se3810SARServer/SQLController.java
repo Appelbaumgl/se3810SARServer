@@ -71,10 +71,10 @@ public class SQLController {
 			String query = "INSERT INTO tags (latitude, longitude, altitude, creator, title, content)"
 					+ " VALUES ('" + tag.getDouble("latitude") + "', '" +
 					tag.getDouble("longitude") + "', '" + 
-					tag.getDouble("altitude") + "', " +
-					tag.getString("creator").replace('\"', '\'') + ", " +
-					tag.getString("title").replace('\"', '\'') + ", " +
-					tag.getString("content").replace('\"', '\'') + ")";
+					tag.getDouble("altitude") + "', '" +
+					tag.getString("creator") + "', '" +
+					tag.getString("title") + "', '" +
+					tag.getString("content") + "')";
 			System.out.println(query);
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
