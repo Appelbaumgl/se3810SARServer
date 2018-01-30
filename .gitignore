@@ -1,3 +1,4 @@
 
 DB_Config.txt
-build/*
+build
+build\*
