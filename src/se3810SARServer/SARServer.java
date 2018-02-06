@@ -42,20 +42,22 @@ public class SARServer extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("POST");
-		char[] cbuf = new char[request.getContentLength()];
-    	request.getReader().read(cbuf);
-    	String jsonString = new String(cbuf);
-    	System.out.println(jsonString);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
     	try {
+    		System.out.println("POST");
+    		char[] cbuf = new char[request.getContentLength()];
+        	request.getReader().read(cbuf);
+        	String jsonString = new String(cbuf);
+        	System.out.println(jsonString);
 			JSONObject json = new JSONObject(jsonString);
 			if(json.has("tag")) {
 				sqlController.saveTagToDatabase((JSONObject) json.get("tag"));
 			} else if(json.has("request")) {
-				//sqlController.doRequest();
+				sqlController.doRequest((JSONObject) json.get("request"), response);
 			}
     	} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
