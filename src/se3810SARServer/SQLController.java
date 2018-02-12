@@ -93,7 +93,9 @@ public class SQLController {
 			double latitude = request.getDouble("latitude");
 			double longitude = request.getDouble("longitude");
 			double distance = request.getDouble("distance");
-			String query = "select *, POWER(SIN((" + latitude + "-latitude)*PI()/360),2) + COS(latitude*PI()/180) * COS(" + latitude + "*PI()/180) * POWER(SIN((" + longitude + "-longitude)*PI()/360),2) as a " + 
+			String query = "select *, POWER(SIN((" + latitude + "-latitude)*PI()/360),2) " +
+					"+ COS(latitude*PI()/180) * COS(" + latitude + "*PI()/180) " +
+					"* POWER(SIN((" + longitude + "-longitude)*PI()/360),2) as a " + 
 					"from tags " + 
 					"having 2 * 6371000 * ATAN2(SQRT(a), SQRT(1-a)) <= " + distance;
 			System.out.println(query);
